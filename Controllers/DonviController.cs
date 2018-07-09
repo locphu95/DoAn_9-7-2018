@@ -32,15 +32,15 @@ namespace NguyenPhuLoc.Controllers
         {
             try
             {
-                var model = (from nh in _db.NamHoc 
-                             join hk in _db.HocKy on nh.MaNamHoc equals hk.MaNamHoc
-                             where hk.MaHocKy==id 
+                var model = (from dv in _db.DonVi 
+                             join ctql in _db.ChiTietQuanLy on dv.MaDonVi equals ctql.MaDonVi
+                             join cbnv in _db.CBNV on ctql.MaCBNV equals cbnv.MaCBNV
+                             where dv.MaDonVi==id && ctql.MaChucVu=="TK" 
                              select new
                              {
-                                nh.MaNamHoc,nh.NgayBatDauNamHoc,nh.NgayKetThucNamHoc,nh.MoTaNamHoc,hk.MaHocKy
+                                 dv.MaDonVi,dv.TenDonVi,dv.DienThoai,cbnv.TenCBNV,cbnv.HoCBNV,cbnv.HocVi,
                              }).ToList();
-                var kq = from a in model group a by new{ a.MaNamHoc,a.NgayBatDauNamHoc,a.NgayKetThucNamHoc,a.MoTaNamHoc,a.MaHocKy} into g select new { g.Key.MaNamHoc,g.Key.NgayBatDauNamHoc,g.Key.NgayKetThucNamHoc,g.Key.MoTaNamHoc,g.Key.MaHocKy};
-                return Ok(kq);
+                return Ok(model);
             }
             catch (Exception)
             {
