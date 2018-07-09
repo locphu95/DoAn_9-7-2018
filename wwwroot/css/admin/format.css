@@ -88,3 +88,14 @@ option {
 .hide{
     
 }
+.table-td-inline{
+    display: inline-flex;
+}
+.canhmenu{
+    background-color: aquamarine;
+    margin-left: 8.4%;
+    position: fixed;
+    bottom: 0;
+    width: 13%;
+    left: 0;
+}
