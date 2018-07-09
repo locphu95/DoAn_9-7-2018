@@ -162,8 +162,6 @@
         <li id="previous-page"><a href="javascript:void(0)" aria-label=Previous><span aria-hidden=true>&laquo;</span></a></li>
 </ul>
 @section scripts{
-    <script src="~/Assets/Personal/js/vendor/jquery-1.11.2.min.js"></script>
-        <script src="~/Assets/Personal/js/vendor/momen.js"></script>
 <script>
 $(document).ready(function () {
     loadcb()
@@ -226,7 +224,7 @@ function loadcbnv(item) {
     '<td>'+item.soTietChuan+'</td>'+
     '<td>'+item.soLuongDangKy+'</td>'+
     '<td>'+item.soLuongConLai+'</td>'+
-    '<td>'
+    '<td class="table-td-inline">'
     +'<button type="button" class=" btn btn-info fa fa-edit showcn" onclick="suaHocky(\''+ item.maCongViec +'\')"><span class="tooltiptext">Sửa</span></button>|<button type="button" class="btn btn-info fa fa-file-text-o showcn" onclick="chitietHocky(\'' + item.maCongViec + '\')"><span class="tooltiptext">Chi tiết</span></button>|<button type="button" class="btn btn-info fa fa-trash-o showcn" onclick="xoaHocky(\'' + item.maCongViec + '\')"><span class="tooltiptext">Xóa </span></button> '
     detailsHtml +='</tr>';  
     return detailsHtml;
@@ -422,7 +420,7 @@ function chitietHocky(id){
         type: "GET",
         success:function(data){
             console.log("chitiet")
-            console.log(data);
+           
             if(data.length <0)
             {
                 alert("Chưa cập nhật Chi tiết quản lý");
@@ -431,6 +429,7 @@ function chitietHocky(id){
             {
                 for(var i =0; i<data.length;i++)
                 {
+                     console.log(data[i]);
             $("#detailma").val(data[i].maCongViec);
             $("#detailten").val(data[i].tenCongViec);
             $("#detailcap").val(data[i].capCongViec);
