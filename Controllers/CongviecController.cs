@@ -17,7 +17,7 @@ namespace NguyenPhuLoc.Controllers
         }
          public IActionResult Get()
         {
-            var model =from a in _db.CongViec where  a.TrangThai==true select a;
+            var model =from a in _db.CongViec where  a.TrangThai==true && a.SoLuongConLai > 0 select a;
             return Ok(model);
         }
         [HttpGet("{id}")]
