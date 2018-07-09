@@ -1,0 +1,136 @@
+﻿<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>HUTECH | Quản Lý</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Assets/Personal/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Assets/Personal/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Assets/conten_admin/stylegiaodien.css" rel="stylesheet" />
+    <link href="~/css/admin/format.css" rel="stylesheet" />
+    <link href="~/css/admin/giaodien.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Times New Roman", Times, serif;
+        }
+    </style>
+</head>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:250px;" id="mySidebar">
+        <div class="w3-container">
+            <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+                <i class="fa fa-remove"></i>
+            </a>
+            <img src="~/Assets/conten_admin/img/logo.png" style="width:90%  ;" class="w3-round">
+            <br />
+            <br />   <br />
+            <h4 style="text-align:center;"><b>Quản Lý Công Việc Giảng Viên</b></h4>
+        </div>
+        <br />
+        <div class="w3-bar-block">
+            <a href="~/Admin/Chaomung" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="	fa fa-bank w3-margin-right"></i>TRANG CHỦ</a>
+            <a href="~/Admin/Danhmucquanly" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>DANH MỤC QUẢN LÝ</a>
+            <a href="~/Admin/Danhmucnghiepvu" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>DANH MỤC NGHIỆP VỤ</a>
+            <a href="~/Admin/Thongke" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bar-chart w3-margin-right"></i>THỐNG KÊ & BÁO CÁO</a>
+            <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw	 w3-margin-right"></i>LIÊN HỆ</a>
+         <div class="frame-footer" style="position: fixed;bottom: 0;left: 0;width: 20%;">
+                <div class="frame-footer-first" style="background-color: aquamarine">
+                    <h3>Thiết Kế Bởi:</h3>
+                    <p><a href="https://www.facebook.com/loc.nguyenphu.355" target="_blank"> Nguyễn Phú Lộc</a> & <a href="https://www.facebook.com/chitrainguyen1996" target="_blank">Nguyễn Chí Trai</a></p>
+                    <p>GVHD: <a href="https://www.facebook.com/vohoangkhang1976" target="_blank">ThS.Võ Hoàng Khang</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="w3-panel w3-large">
+
+        </div>
+    </nav>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-left:250px">
+
+        <!-- Header -->
+        <header id="portfolio">
+            <a href="#"><img src="~/Assets/conten_admin/img/manage.png" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+            <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+            <div class="w3-container">
+
+            </div>
+        </header>
+          @RenderBody()
+        <!-- <footer class="w3-container w3-padding-32 w3-dark-grey">
+            <div class="w3-row-padding">
+                <div class="w3-third">
+                    <h3>Thiết Kế Bởi:</h3>
+                    <p><a href="https://www.facebook.com/loc.nguyenphu.355" target="_blank"> Nguyễn Phú Lộc</a> & <a href="https://www.facebook.com/chitrainguyen1996" target="_blank">Nguyễn Trí Trai</a></p>
+                    <p>GVHD: <a href="https://www.facebook.com/vohoangkhang1976" target="_blank">ThS.Võ Hoàng Khang</a></p>
+                </div>
+
+                <div class="w3-third">
+                    <h3>Bản Quyền Thuộc:</h3>
+                    <ul class="w3-ul w3-hoverable">
+                        <li class="w3-padding-16">
+                            <img src="~/Assets/conten_admin/img/logo.png" class="w3-left w3-margin-right" style="width:100px">
+                            <span class="w3-large">Đại Học Công Nghệ TP.CHM</span><br>
+
+                        </li>
+
+                    </ul>
+                </div>
+
+              </div>
+        </footer> -->
+        <!-- <footer>
+            <div class="frame-footer">
+                <div class="frame-footer-first">
+                    <h3>Thiết Kế Bởi:</h3>
+                    <p><a href="https://www.facebook.com/loc.nguyenphu.355" target="_blank"> Nguyễn Phú Lộc</a> & <a href="https://www.facebook.com/chitrainguyen1996" target="_blank">Nguyễn Trí Trai</a></p>
+                    <p>GVHD: <a href="https://www.facebook.com/vohoangkhang1976" target="_blank">ThS.Võ Hoàng Khang</a></p>
+                </div>
+
+                <div  class="frame-footer-seccond">
+                    <h3>Bản Quyền Thuộc:</h3>
+                    <ul class="">
+                        <li class="">
+                            <img src="~/Assets/conten_admin/img/logo.png" class="w3-left w3-margin-right" style="width:100px">
+                            <span class="">Đại Học Công Nghệ TP.CHM</span><br>
+
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </footer> -->
+
+        <!-- End page content -->
+    </div>
+    <script>
+        // Script to open and close sidebar
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+        }
+    </script>
+    <script src="~/Assets/Personal/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src="~/Assets/Personal/js/vendor/bootstrap.min.js"></script>
+    <script src="~/Assets/Personal/js/vendor/Chart.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+
+        @RenderSection("scripts", required: false)
+        
+        
+</body>
+</html>

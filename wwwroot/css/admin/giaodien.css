@@ -1,0 +1,30 @@
+﻿
+.khung-menu {
+    border: 1px solid red;
+    padding-top: 3px;
+    border-radius: 5px;
+    display: block;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+.imgmg {
+    display: block;
+    float: left;
+    padding-top:6px;
+    padding-left:10px;
+    padding-right:5%;
+}
+.btn-size{
+    border-right:200px;
+
+}
+.form-group {
+    float:right;
+}
+.chartkhoa{
+    display: inline-block;
+    height: 400px;
+    width: 50%;
+    float: left;
+    padding-left: 5%;
+}

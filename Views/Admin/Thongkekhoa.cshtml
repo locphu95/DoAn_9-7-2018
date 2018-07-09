@@ -1,0 +1,111 @@
+<h2 align ="center">Thống Kê Công Việc Đăng Ký</h2>
+
+<div id ="chart" style="width:100%;display:block"> 
+    <canvas id="chart_0" height="400vw" width="400vw"></canvas>
+</div>
+
+
+@section scripts{
+      <script src="~/Assets/Personal/js/vendor/Chart.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	<script>
+    $(document).ready(function () {
+    loaddv()
+    
+    // $('#tbody').paginathing({
+    //              perPage: 5,
+    //          });
+     
+})
+function loaddv(){
+        $.ajax({
+        type: "GET",
+        url: "/api/Donvi",
+        success: function(data){
+            console.log(data);
+            $("#chart").html('');
+            data.map (item=>{
+               
+                 loaddldv(item)
+            })
+            
+        }
+    })
+}
+function loaddldv(donvi){
+        $.ajax({
+        type: "GET",
+        url: "/api/Thongke/Khoa/"+ donvi.maDonVi,
+        success: function(data){
+            if(data.length>0){
+                 let nameId = "chart"+donvi.maDonVi;
+                 let width = (screen.width-600 )/2;
+                $("#chart").append('  <canvas id='+nameId+' height="400" width='+width+' style="display:block;float:left" ></canvas>');
+                  getData(donvi,data);
+            }
+          
+           // seach(data);
+        }
+    })
+}
+    function getData(donvi,dl){
+        console.log(dl);
+        var cot = dl.map(function(e){
+        
+            return e.tenCBNV;
+        })
+        var dong = dl.map(function(e){
+            return e.soluong;
+        })
+        var data = {
+			labels: cot,
+			datasets: [{
+				label: donvi.tenDonVi,
+				backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+				borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+				borderWidth: 2,
+				hoverBackgroundColor: "rgba(255,99,132,0.4)",
+				hoverBorderColor: "rgba(255,99,132,1)",
+				data: dong,
+			}]
+		};
+
+		var option = {
+			responsive: false,
+			scales: {
+				yAxes: [{
+					stacked: true,
+					gridLines: {
+						display: true,
+						color: "rgba(255,99,132,0.2)"
+					}
+				}],
+				xAxes: [{
+					gridLines: {
+						display: false
+					}
+				}]
+			}
+		};
+        let temp = 'chart'+donvi.maDonVi;
+		Chart.Bar(temp, {
+			options: option,
+			data: data
+        });
+    }
+	</script>
+}

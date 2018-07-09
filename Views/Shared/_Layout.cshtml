@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>
+        Quản Lý Công Việc Giảng Viên
+    </title>
+
+    <style>
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: aliceblue;
+            min-width: 160px;
+            box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 6px 8px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+        <!-- Web  Font -->
+        <link rel="stylesheet" href="~/Assets/Personal/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Assets/Personal/css/bootstrap.min.css">
+   
+    <!-- Animate -->
+   
+    <link href="~/css/user/Standard.css" rel="stylesheet" />   
+    <link href="~/css/user/StyleSheet.css" rel="stylesheet" />
+    <link href="~/css/admin/format.css" rel="stylesheet" />
+
+    
+   
+    <!-- Icon-->
+    <link rel="stylesheet" href="~/icon/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="~/icon/iconmoon.css">
+    <link rel="stylesheet" href="~/icon/et-line.css">
+    <link rel="stylesheet" href="~/icon/ionicons.css">
+    <link rel="icon" type="image/ico" href="~/Assets/Personal/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Assets/Personal/js/vendor/jquery-1.11.2.min.js"></script>
+    
+
+
+    
+    
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <form name="aspnetForm" method="post" action="Default.aspx?page=dkmonhoc" id="aspnetForm" enctype="multipart/form-data">
+        <div align="center">
+            <div class="base">
+                <table>
+                    <tr>
+                        <td>
+                            <div>
+                                <table width="1000px">
+
+                                    <tr>
+
+
+                                        <td height="20px" style="padding-left:50px" valign="bottom" align="right">
+                                            <div id="ctl00_Header1_ucLogout_dLog" class="logout" style="text-align: right; margin-bottom:0px">
+
+
+                                                <span id="ctl00_Header1_ucLogout_lblXiet2" class="Label"> Xin Chào</span>
+                                                <span id="tk" class="Label" style="color:#FF3300;font-size:12px;font-weight:bold;"></span>;
+                                                <a id="ctl00_Header1_ucLogout_lbtnThongBao" href="" style="color:#FF9933;font-size:10pt;font-style:italic;font-family: 'Tahoma', Times, serif">Xem thông báo</a>
+                                                <span id="ctl00_Header1_ucLogout_lblXiet1" class="Label">
+                                                | </span>
+                                                <a id="ctl00_Header1_ucLogout_lbtnChangePass" href="#" style="color:#FF3300;font-size:10pt;font-weight:bold;font-family: 'Tahoma', Times, serif">Thay đổi mật khẩu</a>
+                                                <span id="ctl00_Header1_ucLogout_lblXiet2" class="Label"> | </span>
+
+                                                <a id="ctl00_Header1_ucLogout_lbtnLogOut" href="" style="color:#FF3300;font-size:10pt;font-weight:bold;font-family: 'Tahoma', Times, serif">@Html.ActionLink("Thoát","Thoat","GioiThieu")</a>
+
+
+
+
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+
+                                </table>
+                            </div>
+
+                            <div class="left-menu">
+                                <div class="right-menu">
+
+                                    <div class="main-menu" style="height: 110px">
+
+                                        <div id="ctl00_menu_pnlGioithieu" class="out-menu">
+
+                                            <div class="left"></div>
+                                            <div class="center" style="white-space: nowrap">
+                                                <a href="">
+                                                    <span id="ctl00_menu_lblTrangChu" class="Label">TRANG CHỦ</span>
+                                                </a>
+                                            </div>
+
+
+                                        </div>
+                                        <div id="ctl00_menu_dkmonhoc" class="over-menu">
+
+                                            <div class="center dropdown" style="white-space: nowrap">
+
+                                                <a class="dropbtn">DANH MỤC</a>
+                                                <div class="dropdown-content">
+                                                    <a href=""> ĐƠN VỊ</a>
+                                                    <a href="">NHIỆM VỤ</a>
+                                                    <a href="">CHỨC VỤ</a>
+                                                    <a href="">HỌC KỲ</a>
+                                                    <a href="">NĂM HỌC</a>
+                                                    <a href="">QUY ĐỊNH</a>
+                                                    <a href="">CÔNG VIỆC</a>
+                                                    <a href=" "> HỖ TRỢ</a>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div id="ctl00_menu_dkmonhoc" class="over-menu">
+
+                                            <div class="center dropdown" style="white-space: nowrap">
+
+                                                <a href="" class="dropbtn"> CB-NHÂN VIÊN</a>
+                                                <div class="dropdown-content">
+                                                    <a href="">ĐĂNG KÝ CÔNG VIỆC</a>
+                                                    <a href="">CHI TIẾT THỰC HIỆN</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div id="ctl00_menu_dkmonhoc" class="over-menu">
+
+                                            <div class="center dropdown" style="white-space: nowrap">
+
+                                                <a href="" class="dropbtn">ĐÁNH GIÁ</a>
+                                                <div class="dropdown-content">
+                                                    <a href="#">NHÂN VIÊN</a>
+                                                    <a href="">GIẢNG VIÊN</a>
+                                                    <a href="#">...</a>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="out-menu">
+
+                                            <div class="left"></div>
+                                            <div class="center" style="white-space: nowrap">
+                                                <a href="">
+                                                    <span id="ctl00_menu_lblThoiKhoaBieu" class="Label">XEM LỊCH GV</span>
+                                                </a>
+                                            </div>
+                                            <div class="right"></div>
+
+                                        </div>
+
+
+                                        <div id="ctl00_menu_pnlNopCC" class="out-menu">
+
+                                            <div class="left"></div>
+                                            <div class="center" style="white-space: nowrap">
+                                                <a href='#'>
+                                                    <span id="ctl00_menu_Label12" class="Label">NỘP MINH CHỨNG</span>
+                                                </a>
+                                            </div>
+                                            <div class="right"></div>
+
+                                        </div>
+                                        <div class="over-menu">
+
+                                            <div class="center dropdown" style="white-space: nowrap">
+
+                                                <a href="#" class="dropbtn">HỆ THỐNG</a>
+                                                <div class="dropdown-content">
+                                                    <a href="#">ĐỔI MẬT KHẨU</a>
+
+                                                    <a href="#">...</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="over-menu">
+
+                                            <div class="center dropdown" style="white-space: nowrap">
+
+                                                <a href="#" class="dropbtn">Thống Kê</a>
+                                                <div class="dropdown-content">
+                                                    <a href="">Thống Kê Học Kỳ</a>
+
+                                                    <a href="#">...</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+            </div>
+    </form>
+    <div>
+        @RenderBody()
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+
+    <div class="footer">
+        <style type="text/css">
+            .style3 {
+                width: 70px;
+            }
+
+            .style4 {
+                width: 129px;
+            }
+
+            .style5 {
+                width: 1019px;
+            }
+        </style>
+        <table width="100%">
+            <tbody>
+                <tr>
+                    <td align="left" class="style5">
+                        <img src="~/images/trangchu/icon_11c.gif" alt="">
+                        <span class="LogoFooter">
+                            <span id="ctl00_Footer1_lblCompany" class="Label">Copyright ©2009 Trường Đại Học Công Nghệ TP. HCM. Quản lý bởi Phòng Đào Tạo - Khảo thí</span>
+                        </span>
+                    </td>
+
+                    <td valign="top" align="left" class="style4">
+                        <img src="~/images/trangchu/icon_11c.gif" alt="" align="right">
+                    </td>
+                    <td align="left" class="style3">
+                        <a href="Default.aspx">
+                            <span id="ctl00_Footer1_lbltrangchu" class="Label">Trang Chủ</span>
+                        </a>
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td class="style5">
+                        <img src="~/images/trangchu/icon_11c.gif" alt="">
+                        <a href="" target="_blank">
+                            <span id="ctl00_Footer1_lblCopyRight" class="Label">Thiết Kế Bởi Sinh Viên Nguyễn Phú Lộc & Nguyễn Chí Trai </span>
+                        </a>
+                    </td>
+                    <td align="right" valign="top" class="style4">
+                        <img src="~/images/trangchu/icon_11c.gif" width="15px" alt="">
+                    </td>
+                    <td class="style3">
+                        <a href="#Top" title="Go to top" style="text-decoration: none; font-family:Tahoma;font-size:8pt">
+                            <span id="ctl00_Footer1_lbltop" class="Label">Đầu Trang</span>
+                        </a>
+                    </td>
+                    <td align="right">
+                        <a href="">
+                            <span id="ctl00_Footer1_lblAbout" class="Label">About</span>
+                        </a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <script src="~/Assets/Personal/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src="~/Assets/Personal/js/vendor/bootstrap.min.js"></script>
+    <script src="~/Assets/Personal/js/vendor/paginathing.js"></script>
+     @RenderSection("scripts", required: false)
+</body>
+
+</html>

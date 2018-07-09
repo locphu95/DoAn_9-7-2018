@@ -1,0 +1,480 @@
+   <h2 class="text-center">Quản Lý Học Kỳ</h2>
+
+
+<!-- Modal edit-->
+<div id="addcbModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="add">Thêm Học Kỳ</h4>
+                </div>
+                <div class="modal-body">              
+                    <p>Tên Học Kỳ : <input id="addma" class="inputs" type="text"/></p>
+                    <p>Năm Học : <select id="addnamhoc" class="inputs"></select></p>
+                    <p>Ngày Bắt Đầu : <input id="addngaybd" class="inputs" type="text"/></p>
+                    <p>Ngày Kết Thúc Đầu:  <input  class="inputs" id="addngaykt" type="text" /></p>
+                </div>
+                <div class="modal-footer" id="">
+                    <button id="saveCbnv" type="button" class="btn btn-default" data-dismiss="modal">Lưu lại</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+</div>
+<div id="editcbModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="add">Sửa Thông Tin Cán Bộ</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Học Kỳ : <input id="editmahk" class="inputs" type="text"/></p>
+                    <p>Năm Học :  <select  class="inputs" id="editmanamhoc"></select></p>
+                    <p>Ngày Bắt Đầu: <input id="editngaybd" class="inputs" type="text"/></p>
+                    <p>Ngày Kết Thúc:<input id="editngaykt" class="inputs" type="text"/></p>
+                </div>
+                <div class="modal-footer" id="edit3">
+                    
+                </div>
+            </div>
+        </div>
+</div>
+
+<div id="detaicblModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+     <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="add">Thông Tin Chi Tiết</h4>
+            </div>
+            <div class="modal-body">   
+                <fieldset disabled>  
+                <input  type="hidden" id="detailma" class="inputs" type="text">
+                <p>  Họ & Tên : <input id="detailho" class="inputs" type="text"/></p>
+                <p>  Ngày Sinh : <input id="detailns" class="inputs" type="text"/></p>
+                <p>  Phái : <input id="detailphai" class="inputs" type="text"/></p>
+                <p>  Chức Vụ : <input id="detailcv" class="inputs" type="text"/></p>
+                <p>  Đơn Vị : <input id="detailtdv" class="inputs" type="text"/></p>
+                <p>  Học Vị : <input id="detailhv" class="inputs" type="text"/></p>
+                <p>  Số Điện Thoại : <input id="detailsdt" class="inputs" type="text"/></p>
+                <p>  Địa Chỉ : <input id="detaildc" class="inputs" type="text"/></p>
+                </fieldset>    
+            </div>
+            <div class="modal-footer" id="edit1"></div>
+        </div>
+    </div>
+</div>
+<div id="deleteModel" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="add">Bạn Có Muốn Xóa</h4>
+                </div>
+                <div class="modal-body">   
+                    <fieldset disabled>       
+                    <p>Học Kỳ : <input id="deletema" class="inputs" type="text"/></p>
+                  </fieldset>    
+                </div>
+                <div class="modal-footer" id="edit2">
+                </div>
+            </div>
+        </div>
+</div>
+  <!-- Modal -->
+<div class="">
+    <div class="container">
+        <div class="row">
+        <div class="col-sm-6">
+            <button class="btn btn-info fa fa-plus-square" id="addCb" onclick="themHocky()" type="button"> Thêm</button>
+        </div>
+          <div class="col-sm-6">
+            <p>Tìm Kiếm: <span><input type="text" id="seach" onkeyup="seach()"/></span></p>
+        </div>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <tr align='center' height='30px'>
+        <td>Học Kỳ</td>
+        <td>Năm Học</td>
+        <td>Ngày Bắt Đầu Học Kỳ</td>
+        <td>Ngày Kết Thúc Học Kỳ</td>
+         <td></td>
+    </tr>
+    <tbody id="tbody">
+
+    </tbody>
+</table>
+ <ul class=pagination>
+        <li id="previous-page"><a href="javascript:void(0)" aria-label=Previous><span aria-hidden=true>&laquo;</span></a></li>
+</ul>
+@section scripts{
+<script>
+$(document).ready(function () {
+    loadcb()
+    // $('#tbody').paginathing({
+    //              perPage: 5,
+    //          });
+     
+})
+class HocKy {
+            constructor(ma,manh,ngaydb,ngaykt) {
+            this.maHocKy=ma;
+            this.maNamHoc=manh;
+            this.ngayBatDauHocKy=ngaydb;
+            this.ngayKetThucHocKy=ngaykt;
+            }
+        }
+function convertDatetime(dt) {
+
+    res = dt.substring(5, 7) +"-"+dt.substring(8, 10) +  "-" + dt.substring(0, 4);
+    return res;
+}
+function loadcb(){
+    $.ajax({
+        type: "GET",
+        url: "/api/Hocky",
+        success: function(data){
+            console.log(data);
+            getData(data);
+           // seach(data);
+           pagging(data);
+        }
+    })
+}
+
+//load droplist nam hoc
+let dropdown1 = $('#addnamhoc');
+        dropdown1.empty();
+        dropdown1.append('<option selected="true" disabled>Chọn Năm Học</option>');
+        dropdown1.prop('selectedIndex', 0);
+        const url1 = '/api/Namhoc';
+        // Populate dropdown with list of provinces
+        $.getJSON(url1, function (data) {
+            console.log(data);
+            $.each(data, function (key, entry) {
+                dropdown1.append($('<option></option>').attr('value', entry.maNamHoc).text( entry.maNamHoc  +" " +"Ngày Bắt Đầu Năm Học: "+ convertDatetime(entry.ngayBatDauNamHoc)+" " +"Ngày Kết Thúc Năm Học :" + convertDatetime(entry.ngayKetThucNamHoc)));
+            })
+});
+function getData(data) {
+
+    $("#tbody").html("");
+    data.forEach(item => {
+        $("#tbody").append(loadcbnv(item));        
+    }); 
+}
+function loadcbnv(item) {
+    detailsHtml ='<tr class="list-group">';
+    detailsHtml += '<td>'+item.maHocKy+'</td>'+
+    '<td >'+item.maNamHoc +'</td>'+
+    '<td>'+convertDatetime(item.ngayBatDauHocKy) +'</td>'+
+    '<td>'+convertDatetime(item.ngayKetThucHocKy)+'</td>'+
+    '<td>'
+    +'<button type="button" class=" btn btn-info fa fa-edit showcn" onclick="suaHocky(\''+ item.maHocKy +'\')"><span class="tooltiptext">Sửa</span></button>|<button type="button" class="btn btn-info fa fa-file-text-o showcn" onclick="chitietHocky(\'' + item.maHocKy + '\')"><span class="tooltiptext">Chi tiết</span></button>|<button type="button" class="btn btn-info fa fa-trash-o showcn" onclick="xoaHocky(\'' + item.maHocKy + '\')"><span class="tooltiptext">Xóa </span></button> '
+    detailsHtml +='</tr>';  
+    return detailsHtml;
+}
+
+function pagging(data){ 
+    var numberOfItems = data.length; // Get total number of the items that should be paginated
+    var limitPerPage = 7; // Limit of items per each page
+    $('#tbody .list-group:gt(' + (limitPerPage - 1) + ')').hide(); // Hide all items over page limits (e.g., 5th item, 6th item, etc.)
+    var totalPages = Math.round(numberOfItems / limitPerPage); // Get number of pages
+
+    // Loop to insert page number for each sets of items equal to page limit (e.g., limit of 4 with 20 total items = insert 5 pages)
+    for (var i = 1; i <= totalPages; i++) {
+  $(".pagination").append("<li class='current-page'><a href='javascript:void(0)'>" + i + "</a></li>"); // Insert page number into pagination tabs
+    }
+    // Add next button after all the page numbers  
+    $(".pagination").append("<li id='next-page'><a href='javascript:void(0)' aria-label=Next><span aria-hidden=true>&raquo;</span></a></li>");
+
+
+    // Function that displays new items based on page number that was clicked   
+    $(".pagination li.current-page").on("click", function() {
+  // Check if page number that was clicked on is the current page that is being displayed
+  if ($(this).hasClass('active')) {
+    return false; // Return false (i.e., nothing to do, since user clicked on the page number that is already being displayed)
+  } else {
+    var currentPage = $(this).index(); // Get the current page number
+    $(".pagination li").removeClass('active'); // Remove the 'active' class status from the page that is currently being displayed
+    $(this).addClass('active'); // Add the 'active' class status to the page that was clicked on
+    $("#tbody .list-group").hide(); // Hide all items in loop, this case, all the list groups
+    var grandTotal = limitPerPage * currentPage; // Get the total number of items up to the page number that was clicked on
+
+    // Loop through total items, selecting a new set of items based on page number
+    for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
+      $("#tbody .list-group:eq(" + i + ")").show(); // Show items from the new page that was selected
+    }
+  }
+
+    });
+
+    // Function to navigate to the next page when users click on the next-page id (next page button)
+    $("#next-page").on("click", function() {
+  var currentPage = $(".pagination li.active").index(); // Identify the current active page
+  // Check to make sure that navigating to the next page will not exceed the total number of pages
+  if (currentPage === totalPages) {
+    return false; // Return false (i.e., cannot navigate any further, since it would exceed the maximum number of pages)
+  } else {
+    currentPage++; // Increment the page by one
+    $(".pagination li").removeClass('active'); // Remove the 'active' class status from the current page
+    $("#tbody .list-group").hide(); // Hide all items in the pagination loop
+    var grandTotal = limitPerPage * currentPage; // Get the total number of items up to the page that was selected
+
+    // Loop through total items, selecting a new set of items based on page number
+    for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
+      $("#tbody .list-group:eq(" + i + ")").show(); // Show items from the new page that was selected
+    }
+
+    $(".pagination li.current-page:eq(" + (currentPage - 1) + ")").addClass('active'); // Make new page number the 'active' page
+  }
+    });
+
+    // Function to navigate to the previous page when users click on the previous-page id (previous page button)
+    $("#previous-page").on("click", function() {
+  var currentPage = $(".pagination li.active").index(); // Identify the current active page
+  // Check to make sure that users is not on page 1 and attempting to navigating to a previous page
+  if (currentPage === 1) {
+    return false; // Return false (i.e., cannot navigate to a previous page because the current page is page 1)
+  } else {
+    currentPage--; // Decrement page by one
+    $(".pagination li").removeClass('active'); // Remove the 'activate' status class from the previous active page number
+    $("#tbody .list-group").hide(); // Hide all items in the pagination loop
+    var grandTotal = limitPerPage * currentPage; // Get the total number of items up to the page that was selected
+
+    // Loop through total items, selecting a new set of items based on page number
+    for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
+      $("#tbody .list-group:eq(" + i + ")").show(); // Show items from the new page that was selected
+    }
+
+    $(".pagination li.current-page:eq(" + (currentPage - 1) + ")").addClass('active'); // Make new page number the 'active' page
+  }
+});
+}
+function xoaHocky(id){ 
+    $("#deleteModel").modal("show");
+
+    $.ajax({
+        url:'/api/Hocky/'+ id,
+        type: "GET",
+        success:function(data){
+            console.log(data);
+            $("#deletema").val(data.maHocKy);
+            $("#edit2").html('<button onclick="savedelete(\''+ data.maHocKy +'\')" type="button" class="btn btn-default" data-dismiss="modal">Xóa</button> <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>');
+        }
+    })
+}
+function savedelete(id){
+    $.ajax({
+        url:'/api/Hocky/Delete/'+id,
+        type:'GET',
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        success: function(data){
+        console.log(data);
+        loadcb();
+        alert("Đã Xóa Thành Công");
+        location.reload();
+        },
+        error: function(){
+            alert("Xóa Không Thành Công");
+        }
+    });
+}
+function suaHocky(id){
+
+     $("#editngaybd").datepicker({
+    autoclose:true,
+    orientation: "bottom",
+    format: "mm-dd-yyyy",
+    })
+    $("#editngaykt").datepicker({
+    autoclose:true,
+    orientation: "bottom",
+    format: "mm-dd-yyyy"
+        })
+    let dropdown3 = $('#editmanamhoc');
+    dropdown3.empty();
+    $("#editcbModal").modal("show");
+    $.ajax({
+        url:'/api/Hocky/'+ id,
+        type: "GET",
+        success:function(data){
+            $("#editmahk").val(data.maHocKy);
+            $("#editngaybd").val(convertDatetime(data.ngayBatDauHocKy));
+            $("#editngaykt").val(convertDatetime(data.ngayKetThucHocKy));
+            dropdown3.append('<option selected="true" disabled>Chọn Năm Học</option>');
+            dropdown3.prop('selectedIndex', 0);
+            const url3 = '/api/Namhoc';
+            // Populate dropdown with list of provinces
+                $.getJSON(url3, function (dat) {
+                    console.log('step 1');
+                    console.log(dat);
+                    dat.forEach(key => {
+                        console.log(key);
+                         if (key.maNamHoc == data.maNamHoc) {
+                            dropdown3.append($('<option selected="true" value='+key.maNamHoc+'></option>').text("["+key.maNamHoc+"]"+" " +"Bắt Đầu Từ Ngày : "+ convertDatetime(key.ngayBatDauNamHoc)+ " " +" Đến Ngày :" + convertDatetime(key.ngayKetThucNamHoc)));
+                        }
+                        else {
+                            dropdown3.append($('<option value='+key.maNamHoc+'></option>').text( "["+key.maNamHoc+"]"+" " +"Bắt Đầu Từ Ngày : "+ convertDatetime(key.ngayBatDauNamHoc)+ " " +" Đến Ngày :" + convertDatetime(key.ngayKetThucNamHoc)));
+                            }
+                        })
+                    })
+            $("#edit3").html('<button onclick="saveedit(\''+ data.maHocKy +'\')" type="button" class="btn btn-default" data-dismiss="modal">Lưu lại</button> <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>');
+            console.log(data);
+        }
+    })
+}
+function saveedit(id){
+    var ma = $('#editmahk').val();
+    var  manh = $('#editmanamhoc').val();
+    var ngaydb = $('#editngaybd').val();
+    var ngaykt = $('#editngaykt').val();
+
+       var tem = new  HocKy (ma,manh,ngaydb,ngaykt) 
+       console.log(tem);
+        $.ajax({
+            url:'/api/Hocky/Edit/'+id,
+            type:'POST',
+            dataType: 'json',
+            data: JSON.stringify(tem),
+            contentType: "application/json; charset=utf-8",
+                success: function(){
+                    alert("Cập Nhật Thành Công");
+                    location.reload();
+                },
+                error: function(){
+                    alert("Cập Nhật Thất Bại")
+                }
+            });
+        }
+function chitietHocky(id){
+    $("#detailma").val('');
+    $("#detailho").val('');
+    $("#detailns").val('');
+    $("#detailphai").val('');
+    $("#detailcv").val('')
+    $("#detailtdv").val('');
+    $("#detailhv").val('');
+    $("#detailsdt").val('');
+    $("#detaildc").val('');
+    $("#detaicblModal").modal("show");
+    $.ajax({
+        url:'/api/Cbnv/Detail/'+ id,
+        type: "GET",
+        success:function(data){
+            if(data.length <0)
+            {
+                alert("Chưa cập nhật Chi tiết quản lý");
+            }
+            else
+            {
+            for(i=0;i<data.length;i++){
+            console.log(data[i]);
+            $("#detailma").val(data[i].maCBNV);
+            $("#detailho").val(data[i].hoCBNV +' '+data[i].tenCBNV);
+            $("#detailns").val(convertDatetime(data[i].ntns));
+            $("#detailphai").val(data[i].phai);
+            $("#detailcv").val(data[i].tenChucVu)
+            $("#detailtdv").val(data[i].tenDonVi);
+            $("#detailhv").val(data[i].hocVi);
+            $("#detailsdt").val(data[i].dienThoai);
+            $("#detaildc").val(data[i].diaChi);
+            $("#edit1").html('<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>');
+            }
+        }}
+        
+    })
+}
+
+function themHocky(){
+    $("#addngaybd").datepicker({
+    autoclose:true,
+    orientation: "bottom",
+    format: "mm-dd-yyyy",
+    locale: 'vn',
+    viewMode: 'years'
+    })
+    $("#addngaybd").on("dp.change", function (e) {
+            $('#addngaybd').data("DateTimePicker").minDate(e.date);
+        });
+    $("#addngaykt").datepicker({
+    autoclose:true,
+    orientation: "bottom",
+    format: "mm-dd-yyyy"
+        })
+    $('#addma').val('');
+    $('#addnamhoc').val('');
+    $('#addngaybd').val('');
+    $('#addngaykt').val('');
+    $("#addcbModal").modal("show");         
+    }
+$('#saveCbnv').click(function () {
+    var ma = $('#addma').val();
+    var  manh = $('#addnamhoc').val();
+    var ngaydb = $('#addngaybd').val();
+    var ngaykt = $('#addngaykt').val();
+
+       var tem = new  HocKy (ma,manh,ngaydb,ngaykt) 
+    $.ajax({
+        url: "/api/Hocky",
+        type: "post",
+        contentType: "application/json",
+        dataType: 'json',
+        data: JSON.stringify(tem),
+        success: function () {
+            confirm("Thêm Thành Công");
+            location.reload();
+        },
+        error: function(data){
+            confirm("Lỗi Dữ liệu !!! Kiểm Tra Lại.")
+        }
+        });
+     });
+//load dv
+function convetToVietnam(str) { 
+    str= str.toLowerCase();
+    str= str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a"); 
+    str= str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e"); 
+    str= str.replace(/ì|í|ị|ỉ|ĩ/g,"i"); 
+    str= str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o"); 
+    str= str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u"); 
+    str= str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y"); 
+    str= str.replace(/đ/g,"d"); 
+    
+    str= str.replace(/-+-/g,"-");
+    str= str.replace(/^\-+|\-+$/g,""); 
+
+    return str; 
+}
+function seach(){
+    $.ajax({
+        type: "GET",
+        url: "/api/Hocky",
+        success: function(data){
+            keyOld = $("#seach").val();
+            arr = $("#tbody tr");
+            // console.log(arr);
+            for (i = 0; i < arr.length; i++) {
+                element = arr[i].getElementsByTagName("td")[1].innerHTML;
+                 tt =convetToVietnam(element); 
+                let key=convetToVietnam(keyOld);
+                console.log(tt.toUpperCase().indexOf(key.toUpperCase()));
+                if (tt.toUpperCase().indexOf(key.toUpperCase()) > -1) {
+                    arr[i].style.display = "";
+                } else {
+                    arr[i].style.display = "none";
+                }
+            }
+        }
+    });
+}
+</script>
+}

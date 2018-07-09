@@ -1,0 +1,726 @@
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<h2 class="text-center">Quản Lý Giảng Viên</h2>
+
+
+<!-- Modal edit-->
+<div id="addcbModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="add">Thêm Mới Cán Bộ</h4>
+                </div>
+                <div class="modal-body">              
+                    <p>Mã CBNV : <input id="addma" class="inputs" type="text"/></p>
+                    <p>Họ CBNV : <input id="addho" class="inputs" type="text"/></p>
+                    <p>Tên CBNV : <input id="addten" class="inputs" type="text"/></p>
+                    <p>Quyền:  <select  class="inputs" id="addmq"></select></p>
+                    <p>Loại Giảng Viên:<select class="inputs" id="addlgv"></select></p>
+                    <p>Ngày Sinh : <input id="addtns" class="inputs" type="date"/></p>
+                    <p>Email : <input id="addemail" class="inputs" type="email"/></p>
+                    <p>Địa Chỉ: <input id="adddc" class="inputs" type="text"/></p>
+                    <p>Điện Thoại: <input id="adddt" class="inputs" type="text"/></p>
+                    <p>Tên Đăng Nhập : <input id="addtdn" class="inputs" type="text"/></p>
+                    <p>Mật Khẩu : <input id="addmk" class="inputs" type="text"/></p>
+                </div>
+                <div class="modal-footer" id="">
+                     <button id="saveCbnv" type="button" class="btn btn-default" data-dismiss="modal">Lưu lại</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+</div>
+<div id="addqlModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="add">Cập Nhật Chi Tiết Quản Lý</h4>
+                </div>
+                <div class="modal-body">              
+                    <p>Mã CBNV : <input id="addqlma" class="inputs" type="text"/></p>
+                    <p>Mã Đơn Vị:  <select  class="inputs" id="adddv"></select></p>
+                    <p>Chức Vụ :<select class="inputs" id="addcv"></select></p>
+                    <p>Thời Hạn : <input id="addth" class="inputs" type="text"/></p>
+                </div>
+                <div class="modal-footer" id="">
+                     <button id="saveql" type="button" class="btn btn-default" data-dismiss="modal">Lưu lại</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cập Nhật Sau</button>
+                </div>
+            </div>
+        </div>
+</div>
+<div id="editcbModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="add">Sửa Thông Tin Cán Bộ</h4>
+                </div>
+                <div class="modal-body">
+                     <!-- <input  type="hidden" id="editma" class="inputs" type="text"/>
+                    <p>Họ CBNV :
+                         <input id="editho" class="inputs" type="text"/></p>
+                    <p>Tên CBNV : 
+                        <input id="editten" class="inputs" type="text"/></p>
+                    <p>Quyền: 
+                         <select  class="inputs" id="editq"></select></p>
+                    <p>Loại Giảng Viên:
+                        <select class="inputs" id="editlgv"></select></p>
+                    <p>Ngày Sinh :
+                         <input id="editns" value="editns" class="inputs" type="text"/></p>
+                    <p>Email : 
+                        <input id="editmail" class="inputs" type="email"/></p>
+                    <p>Địa Chỉ:
+                         <input id="editdc" class="inputs" type="text"/></p>
+                    <p>Điện Thoại: 
+                        <input id="editdt" class="inputs" type="text"/></p>
+                    <p>Tên Đăng Nhập : 
+                        <input id="editdn" class="inputs" type="text"/></p>
+                    <p>Mật Khẩu : 
+                        <input id="editmk" class="inputs" type="text"/></p>
+                    <p>Học Vị : 
+                        <input id="edithv" class="inputs" type="text"/></p>
+                    <p>Phái : 
+                        <input id="editp" class="inputs" type="text"/></p> -->
+
+
+
+
+                    <div style="width: 100%;display:block">
+                        <div class="label-name-cbnv">
+                            <label class="lable-cbnv">Họ CBNV :</label>
+                            <label class="lable-cbnv">Tên CBNV : </label>
+                            <label class="lable-cbnv">Quyền: </label>
+                            <label class="lable-cbnv">Loại Giảng Viên:</label>
+                            <label class="lable-cbnv">Ngày Sinh :</label>
+                            <label class="lable-cbnv">Email : </label>
+                            <label class="lable-cbnv">Địa Chỉ: </label>
+                            <label class="lable-cbnv">Điện Thoại: </label>
+                            <label class="lable-cbnv">Tên Đăng Nhập : </label>
+                            <label class="lable-cbnv">Mật Khẩu :  </label>
+                            <label class="lable-cbnv">Học Vị : </label>
+                            <label class="lable-cbnv">Phái : </label>
+                            
+                          
+                            
+                        </div>
+                        <div class="input-content-cbnv">
+                            <input  type="hidden" id="editma" class="inputs" type="text"/>
+                            <input id="editho" class="inputs" type="text"/>
+                            <input id="editten" class="inputs" type="text"/>
+                            <select  class="inputs" id="editq"></select>
+                            <select class="inputs" id="editlgv"></select>
+                            <input id="editns" value="editns" class="inputs" type="text"/>
+                            <input id="editmail" class="inputs" type="email"/>
+                            <input id="editdc" class="inputs" type="text"/>
+                            <input id="editdt" class="inputs" type="text"/>
+                            <input id="editdn" class="inputs" type="text"/>
+                            <input id="editmk" class="inputs" type="text"/>
+                            <input id="edithv" class="inputs" type="text"/> 
+                            <input id="editp" class="inputs" type="text"/>
+                        </div>
+                    </div>
+                        
+                    
+                </div>
+                <div class="modal-footer" id="edit3">
+                    
+                </div>
+            </div>
+        </div>
+</div>
+
+<div id="detaicblModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="add">Thông Tin Chi Tiết</h4>
+                </div>
+                <div class="modal-body">   
+                    <fieldset disabled>  
+                    <div class=" "     
+                <input  type="hidden" id="detailma" class="inputs" type="text">
+                  <p>  Họ & Tên : <input id="detailho" class="inputs" type="text"/></p>
+                  <p>  Ngày Sinh : <input id="detailns" class="inputs" type="text"/></p>
+                  <p>  Phái : <input id="detailphai" class="inputs" type="text"/></p>
+                  <p>  Chức Vụ : <input id="detailcv" class="inputs" type="text"/></p>
+                  <p>  Đơn Vị : <input id="detailtdv" class="inputs" type="text"/></p>
+                  <p>  Học Vị : <input id="detailhv" class="inputs" type="text"/></p>
+                  <p>  Số Điện Thoại : <input id="detailsdt" class="inputs" type="text"/></p>
+                  <p>  Địa Chỉ : <input id="detaildc" class="inputs" type="text"/></p>
+                  </fieldset>    
+                </div>
+                <div class="modal-footer" id="edit1">
+                </div>
+            </div>
+        </div>
+</div>
+<div id="deleteModel" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="add">Bạn Có Muốn Xóa</h4>
+                </div>
+                <div class="modal-body">   
+                    <fieldset disabled>       
+                    <input type="hidden" id="deletema" class="inputs" type="text"/>
+                    <p>Họ CBNV : <input id="deleteho" class="inputs" type="text"/></p>
+                    <p>Tên CBNV : <input id="deleteten" class="inputs" type="text"/></p>
+                    <p>Quyền:  <input  class="inputs" id="deleteq"></p>
+                    <p>Loại Giảng Viên:<input class="inputs" id="deletelgv"></p>
+                    <p>Ngày Sinh : <input id="deletens" class="inputs" type="text"/></p>
+                    <p>Email : <input id="deletemail" class="inputs" type="email"/></p>
+                    <p>Địa Chỉ: <input id="deletedc" class="inputs" type="text"/></p>
+                    <p>Điện Thoại: <input id="deletedt" class="inputs" type="text"/></p>
+                    <p>Tên Đăng Nhập : <input id="deletedn" class="inputs" type="text"/></p>
+                    <p>Mật Khẩu : <input id="deletemk" class="inputs" type="text"/></p>
+                    <p>Học Vị : <input id="deletehv" class="inputs" type="text"/></p>
+                    <p>Phái : <input id="deletephai" class="inputs" type="text"/></p>
+                  </fieldset>    
+                </div>
+                <div class="modal-footer" id="edit2">
+                </div>
+            </div>
+        </div>
+</div>
+  <!-- Modal -->
+<div class="">
+    <div class="container">
+        <div class="row">
+        <div class="col-sm-3">
+            <button class="btn btn-info fa fa-plus-square" id="addCb" onclick="themCbnv()" type="button"> Thêm</button>
+        </div>
+          <div class="col-sm-3">
+            <p>Tìm Kiếm: <span><input type="text" id="seach" onkeyup="seach()"/></span></p>
+        </div>
+            <div class="col-sm-3">
+            <button id="cmd" onclick="javascript:demoFromHTML();">Generate PDF</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="customers">
+	<div class="table-responsive">
+         <table class="table" id="content" >
+             <thead>
+    <tr align='center' height='30px'>
+        <td>Mã Cán Bộ</td>
+        <td>Họ & Tên Cán Bộ</td>
+        <td>Số Điện Thoại</td>
+        <td>Học Vị</td>
+        <td>Ngày Sinh</td>
+        <td>Email</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+</table>
+
+    </div>
+    </div>
+ <ul class=pagination>
+        <li id="previous-page"><a href="javascript:void(0)" aria-label=Previous><span aria-hidden=true>&laquo;</span></a></li>
+</ul>
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.4/jspdf.plugin.autotable.js"></script>
+  
+<script>
+$(document).ready(function () {
+    loadcb()
+    // $('#tbody').paginathing({
+    //              perPage: 5,
+    //          });
+     
+})
+class CBNV {
+            constructor(ma, ho, ten, malgv, maq,ns,semail,dc,dt,tdn,mk,hv,sphai) {
+                this.maCBNV = ma;
+                this.hoCBNV = ho;
+                this.tenCBNV = ten;
+                this.maLoaiGiangVien = malgv;
+                this.maQuyen = maq;
+                this.ntns = ns;
+                this.email = semail;
+                this.diaChi = dc;
+                this.dienThoai = dt;
+                this.tenDangNhap = tdn;
+                this.matKhau = mk;
+                this.hocVi = hv;
+                this.phai = sphai;
+            }
+        }
+    class ChiTietQuanLy {
+            constructor(ma,madv,th,macv) {
+                this.maCBNV=ma;
+                this.maDonVi=madv;
+                this.maChucVu=macv;
+                this.thoiHan=th;
+            }
+        }
+function convertDatetime(dt) {
+
+    res = dt.substring(5, 7) +"-"+dt.substring(8, 10) +  "-" + dt.substring(0, 4);
+    return res;
+}
+function loadcb(){
+    $.ajax({
+        type: "GET",
+        url: "/api/Cbnv",
+        success: function(data){
+            console.log(data);
+            getData(data);
+           // seach(data);
+           pagging(data);
+        }
+    })
+}
+//load droplist lgv
+let dropdown1 = $('#addlgv');
+        dropdown1.empty();
+        dropdown1.append('<option selected="true" disabled>Chọn Loại Giảng Viên</option>');
+        dropdown1.prop('selectedIndex', 0);
+        const url1 = '/api/Loaigiangvien';
+        // Populate dropdown with list of provinces
+        $.getJSON(url1, function (data) {
+            console.log(data);
+            $.each(data, function (key, entry) {
+                dropdown1.append($('<option></option>').attr('value', entry.maLoaiGiangVien).text(entry.tenLoaiGiangVien));
+            })
+});
+//load droplist quyen
+let dropdown2 = $('#addmq');
+        dropdown2.empty();
+        dropdown2.append('<option selected="true" disabled>Chọn Quyền</option>');
+        dropdown2.prop('selectedIndex', 0);
+        const url2 = '/api/Quyen';
+        // Populate dropdown with list of provinces
+        $.getJSON(url2, function (data) {
+            console.log(data);
+            $.each(data, function (key, entry) {
+                dropdown2.append($('<option></option>').attr('value',entry.maQuyen).text(entry.tenQuyen));
+            })
+});
+function getData(data) {
+
+    $("#tbody").html("");
+    data.forEach(item => {
+        $("#tbody").append(loadcbnv(item));        
+    }); 
+}
+function loadcbnv(item) {
+    detailsHtml ='<tr class="list-group">';
+    detailsHtml += '<td>'+item.maCBNV+'</td>'+
+    '<td >'+item.hoCBNV +" "+ item.tenCBNV+'</td>'+
+    '<td>'+item.dienThoai +'</td>'+
+    '<td>'+item.hocVi+'</td>'+
+    '<td>'+convertDatetime(item.ntns) +'</td>'+
+    '<td>'+item.email +'</td>'+
+    '<td>'
+    +'<button type="button" class=" btn btn-info fa fa-edit showcn" onclick="suaCbnv(\''+ item.maCBNV +'\')"><span class="tooltiptext">Sửa</span></button>|<button type="button" class="btn btn-info fa fa-file-text-o showcn" onclick="chitietCbnv(\'' + item.maCBNV + '\')"><span class="tooltiptext">Chi tiết</span></button>|<button type="button" class="btn btn-info fa fa-trash-o showcn" onclick="xoaCbnv(\'' + item.maCBNV + '\')"><span class="tooltiptext">Xóa </span></button> '
+    detailsHtml +='</tr>';  
+    return detailsHtml;
+}
+
+function pagging(data){ 
+    var numberOfItems = data.length; // Get total number of the items that should be paginated
+    var limitPerPage = 7; // Limit of items per each page
+    $('#tbody .list-group:gt(' + (limitPerPage - 1) + ')').hide(); // Hide all items over page limits (e.g., 5th item, 6th item, etc.)
+    var totalPages = Math.round(numberOfItems / limitPerPage); // Get number of pages
+
+    // Loop to insert page number for each sets of items equal to page limit (e.g., limit of 4 with 20 total items = insert 5 pages)
+    for (var i = 1; i <= totalPages; i++) {
+  $(".pagination").append("<li class='current-page'><a href='javascript:void(0)'>" + i + "</a></li>"); // Insert page number into pagination tabs
+    }
+    // Add next button after all the page numbers  
+    $(".pagination").append("<li id='next-page'><a href='javascript:void(0)' aria-label=Next><span aria-hidden=true>&raquo;</span></a></li>");
+
+
+    // Function that displays new items based on page number that was clicked   
+    $(".pagination li.current-page").on("click", function() {
+  // Check if page number that was clicked on is the current page that is being displayed
+  if ($(this).hasClass('active')) {
+    return false; // Return false (i.e., nothing to do, since user clicked on the page number that is already being displayed)
+  } else {
+    var currentPage = $(this).index(); // Get the current page number
+    $(".pagination li").removeClass('active'); // Remove the 'active' class status from the page that is currently being displayed
+    $(this).addClass('active'); // Add the 'active' class status to the page that was clicked on
+    $("#tbody .list-group").hide(); // Hide all items in loop, this case, all the list groups
+    var grandTotal = limitPerPage * currentPage; // Get the total number of items up to the page number that was clicked on
+
+    // Loop through total items, selecting a new set of items based on page number
+    for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
+      $("#tbody .list-group:eq(" + i + ")").show(); // Show items from the new page that was selected
+    }
+  }
+
+    });
+
+    // Function to navigate to the next page when users click on the next-page id (next page button)
+    $("#next-page").on("click", function() {
+  var currentPage = $(".pagination li.active").index(); // Identify the current active page
+  // Check to make sure that navigating to the next page will not exceed the total number of pages
+  if (currentPage === totalPages) {
+    return false; // Return false (i.e., cannot navigate any further, since it would exceed the maximum number of pages)
+  } else {
+    currentPage++; // Increment the page by one
+    $(".pagination li").removeClass('active'); // Remove the 'active' class status from the current page
+    $("#tbody .list-group").hide(); // Hide all items in the pagination loop
+    var grandTotal = limitPerPage * currentPage; // Get the total number of items up to the page that was selected
+
+    // Loop through total items, selecting a new set of items based on page number
+    for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
+      $("#tbody .list-group:eq(" + i + ")").show(); // Show items from the new page that was selected
+    }
+
+    $(".pagination li.current-page:eq(" + (currentPage - 1) + ")").addClass('active'); // Make new page number the 'active' page
+  }
+    });
+
+    // Function to navigate to the previous page when users click on the previous-page id (previous page button)
+    $("#previous-page").on("click", function() {
+  var currentPage = $(".pagination li.active").index(); // Identify the current active page
+  // Check to make sure that users is not on page 1 and attempting to navigating to a previous page
+  if (currentPage === 1) {
+    return false; // Return false (i.e., cannot navigate to a previous page because the current page is page 1)
+  } else {
+    currentPage--; // Decrement page by one
+    $(".pagination li").removeClass('active'); // Remove the 'activate' status class from the previous active page number
+    $("#tbody .list-group").hide(); // Hide all items in the pagination loop
+    var grandTotal = limitPerPage * currentPage; // Get the total number of items up to the page that was selected
+
+    // Loop through total items, selecting a new set of items based on page number
+    for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
+      $("#tbody .list-group:eq(" + i + ")").show(); // Show items from the new page that was selected
+    }
+
+    $(".pagination li.current-page:eq(" + (currentPage - 1) + ")").addClass('active'); // Make new page number the 'active' page
+  }
+});
+}
+function xoaCbnv(id){ 
+    $("#deleteModel").modal("show");
+
+    $.ajax({
+        url:'/api/Cbnv/'+ id,
+        type: "GET",
+        success:function(data){
+            console.log(data);
+            $("#deletema").val(data.maCBNV);
+            $("#deleteho").val(data.hoCBNV);
+            $("#deleteten").val(data.tenCBNV);
+            $("#deleteq").val(data.maQuyen);
+            $("#deletelgv").val(data.maLoaiGiangVien);
+            $("#deletemail").val(data.email);
+            $("#deletens").val(convertDatetime(data.ntns));
+            $("#deletephai").val(data.phai);
+            $("#deletehv").val(data.hocVi);
+            $("#deletedt").val(data.dienThoai);
+            $("#deletedc").val(data.diaChi);
+            $("#deletedn").val(data.tenDangNhap);
+            $("#deletemk").val(data.matKhau);
+            $("#edit2").html('<button onclick="savedelete(\''+ data.maCBNV +'\')" type="button" class="btn btn-default" data-dismiss="modal">Xóa</button> <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>');
+        }
+    })
+}
+function savedelete(id){
+    $.ajax({
+        url:'/api/Cbnv/Delete/'+id,
+        type:'GET',
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        success: function(data){
+        console.log(data);
+        loadcb();
+        alert("Đã Xóa");
+        },
+        error: function(){
+            alert("Xóa Không Thành Công");
+        }
+    });
+}
+function suaCbnv(id){
+    let dropdown3 = $('#editq');
+    dropdown3.empty();
+    let dropdown4 = $('#editlgv');
+    dropdown4.empty();
+    $("#editcbModal").modal("show");
+    $.ajax({
+        url:'/api/Cbnv/'+ id,
+        type: "GET",
+        success:function(data){
+            $("#editma").val(data.maCBNV);
+            $("#editho").val(data.hoCBNV);
+            $("#editten").val(data.tenCBNV);
+            $("#editns").val(convertDatetime(data.ntns));
+            $("#editp").val(data.phai);
+            $("#edithv").val(data.hocVi);
+            $("#editdt").val(data.dienThoai);
+            $("#editdc").val(data.diaChi);
+            $("#editmail").val(data.email);
+            $("#editdn").val(data.tenDangNhap);
+            $("#editmk").val(data.matKhau);
+            dropdown3.append('<option selected="true" disabled>Chọn Quyền</option>');
+            dropdown3.prop('selectedIndex', 0);
+            const url3 = '/api/Quyen';
+            // Populate dropdown with list of provinces
+                $.getJSON(url3, function (dat) {
+                    console.log('step 1');
+                    console.log(dat);
+                    dat.forEach(key => {
+                        console.log(key);
+                         if (key.maQuyen == data.maQuyen) {
+                            dropdown3.append($('<option selected="true" value='+key.maQuyen+'></option>').text(key.tenQuyen));
+                        }
+                        else {
+                            dropdown3.append($('<option value='+key.maQuyen+'></option>').text(key.tenQuyen));
+                            }
+                        })
+                    })
+            dropdown4.append('<option selected="true" disabled>Chọn Loại Giảng Viên</option>');
+            dropdown4.prop('selectedIndex', 0);
+            const url4 = '/api/Loaigiangvien';
+            // Populate dropdown with list of provinces
+               $.getJSON(url4, function (dat) {
+                    console.log('step 2');
+                    console.log(dat);
+                    dat.forEach(key => {
+                        console.log(key);
+                         if (key.maLoaiGiangVien == data.maLoaiGiangVien) {
+                            dropdown4.append($('<option selected="true" value='+key.maLoaiGiangVien+'></option>').text(key.tenLoaiGiangVien));
+                        }
+                        else {
+                            dropdown4.append($('<option value='+key.maLoaiGiangVien+'></option>').text(key.tenLoaiGiangVien));
+                            }
+                        })
+                    })
+            $("#edit3").html('<button onclick="saveedit(\''+ data.maCBNV +'\')" type="button" class="btn btn-default" data-dismiss="modal">Lưu lại</button> <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>');
+            console.log(data);
+        }
+    })
+}
+function saveedit(id){
+        var ma = $('#editma').val();
+        var ho = $('#editho').val();
+        var ten = $('#editten').val();
+        var malgv = $('#editlgv').val();
+        var maq = $('#editq').val();
+        var ns = $('#editns').val();
+        var semail = $('#editmail').val();
+        var dc = $('#editdc').val();
+        var dt = $('#editdt').val();
+        var tdn = $('#editdn').val();
+        var mk = $('#editmk').val();
+        var hv = $('#edithv').val();
+        var sphai = $('#editp').val();
+        var temp = new CBNV(ma, ho, ten, malgv, maq,ns,semail,dc,dt,tdn,mk,hv,sphai);
+       console.log(temp);
+        $.ajax({
+            url:'/api/Cbnv/Edit/'+id,
+            type:'POST',
+            dataType: 'json',
+            data: JSON.stringify(temp),
+            contentType: "application/json; charset=utf-8",
+                success: function(){
+                    alert("Cập Nhật Thành Công");
+                    location.reload();
+                    console.log(ns);
+                },
+                error: function(){
+                    alert("Cập Nhật Thất Bại")
+                }
+            });
+        }
+function chitietCbnv(id){
+    $("#detailma").val('');
+    $("#detailho").val('');
+    $("#detailns").val('');
+    $("#detailphai").val('');
+    $("#detailcv").val('')
+    $("#detailtdv").val('');
+    $("#detailhv").val('');
+    $("#detailsdt").val('');
+    $("#detaildc").val('');
+    $("#detaicblModal").modal("show");
+    $.ajax({
+        url:'/api/Cbnv/Detail/'+ id,
+        type: "GET",
+        success:function(data){
+            if(data.length <0)
+            {
+                alert("Chưa cập nhật Chi tiết quản lý");
+            }
+            else
+            {
+            for(i=0;i<data.length;i++){
+            console.log(data[i]);
+            $("#detailma").val(data[i].maCBNV);
+            $("#detailho").val(data[i].hoCBNV +' '+data[i].tenCBNV);
+            $("#detailns").val(convertDatetime(data[i].ntns));
+            $("#detailphai").val(data[i].phai);
+            $("#detailcv").val(data[i].tenChucVu)
+            $("#detailtdv").val(data[i].tenDonVi);
+            $("#detailhv").val(data[i].hocVi);
+            $("#detailsdt").val(data[i].dienThoai);
+            $("#detaildc").val(data[i].diaChi);
+            $("#edit1").html('<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>');
+            }
+        }}
+        
+    })
+}
+function themCbnv(){
+            $('#addma').val('');
+            $('#addho').val('');
+            $('#addten').val('');
+            $('#addmq').val('');
+            $('#addlgv').val('');
+            $('#addtns').val('');
+            $('#addemail').val('');
+            $('#adddc').val('');
+            $('#adddt').val('');
+            $('#addtdn').val('');
+            $('#addmk').val('');
+            $("#addcbModal").modal("show");         
+        }
+$('#saveCbnv').click(function () {
+    $.ajax({
+        url: "/api/Cbnv",
+        type: "post",
+        contentType: "application/json",
+        dataType: 'json',
+        data: JSON.stringify({
+        maCBNV: $('#addma').val(),
+        hoCBNV: $('#addho').val(),
+        tenCBNV: $('#addten').val(),
+        maQuyen: $('#addmq').val(),
+        maLoaiGiangVien: $('#addlgv').val(),
+        ntns: $('#addtns').val(),
+        email: $('#addemail').val(),
+        diaChi: $('#adddc').val(),
+        dienThoai: $('#adddt').val(),
+        tenDangNhap: $('#addtdn').val(),
+        matKhau: $('#addmk').val(),                       
+        }),
+        success: function () {
+            confirm("Thêm Thành Công");
+            console.log( $('#addma').val());
+            Addql($('#addma').val());
+        },
+        error: function(data){
+            confirm("Lỗi Dữ liệu !!! Kiểm Tra Lại.")
+        }
+        });
+     });
+//load dv
+let dropdown5 = $('#adddv');
+        dropdown5.empty();
+        dropdown5.append('<option selected="true" disabled>Chọn Đơn Vị</option>');
+        dropdown5.prop('selectedIndex', 0);
+        const url5 = '/api/Donvi';
+        // Populate dropdown with list of provinces
+        $.getJSON(url5, function (data) {
+            console.log(data);
+            $.each(data, function (key, entry) {
+                dropdown5.append($('<option></option>').attr('value', entry.maDonVi).text(entry.tenDonVi));
+            })
+});
+//load droplist quyen
+let dropdown6 = $('#addcv');
+        dropdown6.empty();
+        dropdown6.append('<option selected="true" disabled>Chọn Chức Vụ</option>');
+        dropdown6.prop('selectedIndex', 0);
+        const url6 = '/api/Chucvu';
+        // Populate dropdown with list of provinces
+        $.getJSON(url6, function (data) {
+            console.log(data);
+            $.each(data, function (key, entry) {
+                dropdown6.append($('<option></option>').attr('value',entry.maChucVu).text(entry.tenChucVu));
+            })
+});
+function Addql(ma1){
+            $('#addth').val('');
+            $("#addqlModal").modal("show");
+            $("#addqlma").val(ma1);
+            $("#edit4").html('<button onclick="saveedit(\''+ma1+'\')" type="button" class="btn btn-default" data-dismiss="modal">Lưu lại</button> <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>');
+$('#saveql').click(function (id) {
+        var ma =  ma1;
+        var madv = $('#adddv').val();
+        var th = $('#addth').val();
+        var macv = $('#addcv').val();
+        var temp = new ChiTietQuanLy(ma,madv,th,macv);
+        console.log(temp);
+    $.ajax({
+    url: "/api/Ctql/Add",
+    type: "post",
+    contentType: "application/json; charset=utf-8",
+    dataType: 'json',
+    data: JSON.stringify(temp),
+    success: function (data) {         
+        loadcb();
+        confirm("Cập Nhật Chi Tiết Thành Công");
+         console.log(temp);
+         location.reload();
+        },
+        error: function(data){
+            confirm("Lỗi Dữ liệu !!! Kiểm Tra Lại.");
+            Addql($('#addma').val());
+            }
+        });
+    });
+}
+
+function convetToVietnam(str) { 
+    str= str.toLowerCase();
+    str= str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a"); 
+    str= str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e"); 
+    str= str.replace(/ì|í|ị|ỉ|ĩ/g,"i"); 
+    str= str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o"); 
+    str= str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u"); 
+    str= str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y"); 
+    str= str.replace(/đ/g,"d"); 
+    
+    str= str.replace(/-+-/g,"-");
+    str= str.replace(/^\-+|\-+$/g,""); 
+
+    return str; 
+}
+function seach(){
+    $.ajax({
+        type: "GET",
+        url: "/api/Cbnv",
+        success: function(data){
+            keyOld = $("#seach").val();
+            arr = $("#tbody tr");
+            // console.log(arr);
+            for (i = 0; i < arr.length; i++) {
+                element = arr[i].getElementsByTagName("td")[1].innerHTML;
+                 tt =convetToVietnam(element); 
+                let key=convetToVietnam(keyOld);
+                console.log(tt.toUpperCase().indexOf(key.toUpperCase()));
+                if (tt.toUpperCase().indexOf(key.toUpperCase()) > -1) {
+                    arr[i].style.display = "";
+                } else {
+                    arr[i].style.display = "none";
+                }
+            }
+        }
+    });
+}
+
+
+
+</script>
+}

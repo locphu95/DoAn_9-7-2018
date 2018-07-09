@@ -1,0 +1,90 @@
+button.btn.btn-info  {
+    background: #40daf1;
+    border-color: #40daf1;
+    
+}
+button.btn.btn-info:hover{
+    background-color:  rgb(80, 59, 173);
+    
+}
+
+.add{
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: uppercase;
+    opacity: .9;
+    color: black;
+    text-align: center;
+}
+.inputs{
+    color:black;
+    border: 1px solid hsla(246, 80%, 38%, 0.6);
+    border-radius: 5px;
+    background-color: hsla(0,0%,100%,.1);
+    box-shadow: none;
+    font-size: 14px;
+    margin-top: 1%;
+    width: 100%;
+    padding: 3px;
+}
+.lable-cbnv{
+    display:block;margin-top:6%
+}
+.label-name-cbnv{
+    display: inline-block;
+    width: 30%;
+    float: left;
+}
+.input-content-cbnv{
+    display: inline-block;
+    width: 70%;
+}
+
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+    color: black;
+}
+
+.showcn {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.showcn .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.showcn .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.showcn:hover .tooltiptext {
+    visibility: visible;
+}
+
+.hide{
+    
+}
