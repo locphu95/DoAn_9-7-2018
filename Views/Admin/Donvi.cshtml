@@ -11,9 +11,9 @@
                     <h4 class="add">Thêm Đơn Vị</h4>
                 </div>
                 <div class="modal-body">              
-                    <p>Mã Đơn Vị : <input id="addma" class="inputs" type="text"/></p>
+                    <p>Mã Đơn Vị: <input id="addma" class="inputs" type="text"/></p>
                     <p>Tên Đơn Vị: <input id="addten" class="inputs"/></p>
-                    <p>Số Điện Thoại :  <input  class="inputs" id="addsdt" type="text" /></p>
+                    <p>Số Điện Thoại:  <input  class="inputs" id="addsdt" type="text" /></p>
                 </div>
                 <div class="modal-footer" id="">
                     <button id="saveCbnv" type="button" class="btn btn-default" data-dismiss="modal">Lưu lại</button>
@@ -32,8 +32,8 @@
                 </div>
                 <div class="modal-body">
 
-                    <p>Tên Đơn Vị : <input type="text" class="inputs" id="editloai"/></p>
-                    <p>Số Điện Thoại : <input id="editsoluong" class="inputs" type="text" value="1"/></p>
+                    <p>Tên Đơn Vị: <input type="text" class="inputs" id="editloai"/></p>
+                    <p>Số Điện Thoại: <input id="editsoluong" class="inputs" type="text" value="1"/></p>
                 </div>
                 <div class="modal-footer" id="edit3">
                     
@@ -52,11 +52,10 @@
             </div>
             <div class="modal-body">   
                 <fieldset disabled>  
-                    <p>Loại Hỗ Trợ : <input id="detailma" class="inputs" type="text"/></p>
-                    <p>Nguồn Hỗ Trợ : <input id="detailnguon" type="text" class="inputs"/></p>
-                    <p>Loại Hỗ Trợ : <input type="text" class="inputs" id="detailloai"/></p>
-                    <p>Số Lượng : <input id="detailsoluong" class="inputs" type="number" value="1"/></p>
-                    <p>Đơn Vị Tính :  <input  class="inputs" id="detaildonvitinh" type="text" /></p>
+                    <p>Tên Đơn Vị: <input id="detailma" class="inputs" type="text"/></p>
+                    <p>Trường Khoa: <input id="detailnguon" type="text" class="inputs"/></p>
+                    <p>Học Vị: <input type="text" class="inputs" id="detailloai"/></p>
+                    <p>Số Điện Thoại: <input id="detailsoluong" class="inputs" type="text" value="1"/></p>
                 </fieldset>    
             </div>
             <div class="modal-footer" id="edit1"></div>
@@ -73,7 +72,7 @@
                 </div>
                 <div class="modal-body">   
                     <fieldset disabled>       
-                    <p>Học Kỳ : <input id="deletema" class="inputs" type="text"/></p>
+                    <p>Học Kỳ: <input id="deletema" class="inputs" type="text"/></p>
                   </fieldset>    
                 </div>
                 <div class="modal-footer" id="edit2">
@@ -151,12 +150,11 @@ function loadcbnv(item) {
     detailsHtml ='<tr class="list-group">';
     detailsHtml += '<td>'+item.tenDonVi+'</td>'+
     '<td >'+item.dienThoai +'</td>'+
-    '<td>'
+    '<td class="table-td-inline">'
     +'<button type="button" class=" btn btn-info fa fa-edit showcn" onclick="suaHocky(\''+ item.maDonVi +'\')"><span class="tooltiptext">Sửa</span></button>|<button type="button" class="btn btn-info fa fa-file-text-o showcn" onclick="chitietHocky(\'' + item.maDonVi + '\')"><span class="tooltiptext">Chi tiết</span></button>|<button type="button" class="btn btn-info fa fa-trash-o showcn" onclick="xoaHocky(\'' + item.maDonVi + '\')"><span class="tooltiptext">Xóa </span></button> '
     detailsHtml +='</tr>';  
     return detailsHtml;
 }
-
 function pagging(data){ 
     var numberOfItems = data.length; // Get total number of the items that should be paginated
     var limitPerPage = 7; // Limit of items per each page
@@ -305,22 +303,18 @@ function chitietHocky(id){
     $("#detaildonvitinh").val('')
     $("#detaicblModal").modal("show");
     $.ajax({
-        url:'/api/Hotro/'+ id,
+        url:'/api/Donvi/Detail/'+ id,
         type: "GET",
         success:function(data){
             console.log("chitiet")
-            console.log(data);
-            if(data.length <0)
-            {
-                alert("Chưa cập nhật Chi tiết quản lý");
-            }
-            else
-            {
-            $("#detailma").val(data.maHoTro);
-            $("#detailloai").val(data.loaiHoTro);
-            $("#detailnguon").val(data.nguonHoTro);
-            $("#detailsoluong").val(data.soLuong)
-            $("#detaildonvitinh").val(data.donViTinh);
+            for(var i = 0;i<data.length;i++){
+            console.log(data[0])
+           
+     
+           $("#detailma").val(data[i].tenDonVi);
+            $("#detailloai").val(data[i].hocVi);
+            $("#detailnguon").val(data[i].hoCBNV+" "+data[i].tenCBNV);
+            $("#detailsoluong").val(data[i].dienThoai)
             $("#edit1").html('<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>');
             }
         }
