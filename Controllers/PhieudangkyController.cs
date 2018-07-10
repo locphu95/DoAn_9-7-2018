@@ -25,7 +25,23 @@ namespace NguyenPhuLoc.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var model = _db.PhieuDangKy.ToList();
+            var model = from a in _db.PhieuDangKy
+                        join d in _db.CBNV on a.MaCBNV equals d.MaCBNV
+                        where a.TrangThai == true
+                        orderby a.MaPhieuDangKy
+
+                        select new
+                        {
+                            a.MaPhieuDangKy,
+                            a.MaHocKy,
+                            a.NgayDangKy,
+                            a.NguoiDangKy,
+                            a.MaCBNV,
+                            d.HoCBNV,
+                            d.TenCBNV
+                        };
+            // var ef = (from e in model   group e by new { e.MaCBNV, e.TenCBNV, e.HoCBNV,e.TenCongViec } into g
+            //                    select new { g.Key.MaCBNV, g.Key.TenCBNV, g.Key.HoCBNV, g.Key.TenCongViec,soluong = g.Count() }).ToList();
             return Ok(model);
         }
         [HttpGet("{id}")]
@@ -42,21 +58,64 @@ namespace NguyenPhuLoc.Controllers
             }
         }
         [HttpGet("Detail/{id}")]
-        public IActionResult GetDetail(int id)
+        public IActionResult GETdetail(string id)
+        {
+
+            return Ok();
+        }
+        [HttpPost]
+        public IActionResult Post([FromBody] PhieuDangKy cb)
+        {
+            cb.TrangThai = true;
+            try
+            {
+                PhieuDangKy tour = new PhieuDangKy()
+                {
+                    MaCBNV = cb.MaCBNV,
+                    NgayDangKy = cb.NgayDangKy,
+                    NguoiDangKy = cb.NguoiDangKy,
+                    MaPhieuDangKy = cb.MaPhieuDangKy,
+                    MaHocKy = cb.MaCBNV,
+                    TrangThai = cb.TrangThai
+                };
+                _db.PhieuDangKy.Add(tour);
+                _db.SaveChanges();
+                return Ok("Them thanh cong");
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+        [HttpPost("Edit/{id}")]
+        public IActionResult Post2([FromBody] PhieuDangKy cb, string id)
         {
             try
             {
-                var model = (from cb in _db.CBNV
-                             from l in _db.LoaiGiangVien
-                             where cb.MaLoaiGiangVien == l.MaLoaiGiangVien
-                             select new
-                             {
-                                 l.TenLoaiGiangVien,
-
-                             }).ToList();
-                return Ok(model);
+                PhieuDangKy edit = _db.PhieuDangKy.FirstOrDefault(x => x.MaPhieuDangKy == id);
+                edit.MaCBNV = cb.MaCBNV;
+                edit.MaHocKy = cb.MaHocKy;
+                edit.NgayDangKy = cb.NgayDangKy;
+                edit.NguoiDangKy = cb.NguoiDangKy;
+                _db.SaveChanges();
+                return Ok("Them thanh cong");
             }
-            catch (Exception)
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("Delete/{id}")]
+        public IActionResult Post3(string id)
+        {
+            try
+            {
+                PhieuDangKy del = _db.PhieuDangKy.FirstOrDefault(x => x.MaPhieuDangKy == id);
+                del.TrangThai = false;
+                _db.SaveChanges();
+                return Ok("Xoa thanh cong");
+            }
+            catch
             {
                 return BadRequest();
             }
