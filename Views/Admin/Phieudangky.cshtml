@@ -11,9 +11,11 @@
                     <h4 class="add">Thêm Phiếu Đăng Ký</h4>
                 </div>
                 <div class="modal-body">              
-                    <p>Mã Đơn Vị : <input id="addma" class="inputs" type="text"/></p>
-                    <p>Tên Đơn Vị: <input id="addten" class="inputs"/></p>
-                    <p>Số Điện Thoại :  <input  class="inputs" id="addsdt" type="text" /></p>
+                    <p>Mã Phiếu Đăng Ký: <input id="addma" class="inputs" type="text"/></p>
+                    <p>Năm Học: <select id="addnh" class="inputs"></select></p>
+                    <p>Ngày Đăng Ký :  <input  class="inputs" id="addsdt" type="text" /></p>
+                    <p>Người Đăng Ký :  <input  class="inputs" id="addsdt" type="text" /></p>
+                    <p>Cán Bộ Nhân Viên :  <select  class="inputs" id="addsdt" type="text" ></select></p>
                 </div>
                 <div class="modal-footer" id="">
                     <button id="saveCbnv" type="button" class="btn btn-default" data-dismiss="modal">Lưu lại</button>
@@ -96,8 +98,11 @@
 </div>
 <table class="table">
     <tr align='center' height='30px'>
-        <td>Tên Đơn Vị</td>
-        <td>Số Điện Thoại</td>
+        <td>Mã Phiếu Đăng Ký</td>
+        <td>Học Kỳ</td>
+        <td>Ngày Đăng Ký</td>
+        <td>Người Đăng Ký</td>
+        <td></td>
          <td></td>
     </tr>
     <tbody id="tbody">
@@ -149,9 +154,12 @@ function getData(data) {
 }
 function loadcbnv(item) {
     detailsHtml ='<tr class="list-group">';
-    detailsHtml += '<td>'+item.tenDonVi+'</td>'+
-    '<td >'+item.dienThoai +'</td>'+
-    '<td>'
+    detailsHtml += '<td>'+item.maPhieuDangKy+'</td>'+
+    '<td >'+item.maHocKy +'</td>'+
+    '<td >'+convertDatetime(item.ngayDangKy) +'</td>'+
+    '<td >'+item.nguoiDangKy +'</td>'+
+    '<td >'+item.hoCBNV +" "+item.tenCBNV +'</td>'+
+    '<td class="table-td-inline">'
     +'<button type="button" class=" btn btn-info fa fa-edit showcn" onclick="suaHocky(\''+ item.maDonVi +'\')"><span class="tooltiptext">Sửa</span></button>|<button type="button" class="btn btn-info fa fa-file-text-o showcn" onclick="chitietHocky(\'' + item.maDonVi + '\')"><span class="tooltiptext">Chi tiết</span></button>|<button type="button" class="btn btn-info fa fa-trash-o showcn" onclick="xoaHocky(\'' + item.maDonVi + '\')"><span class="tooltiptext">Xóa </span></button> '
     detailsHtml +='</tr>';  
     return detailsHtml;
@@ -237,7 +245,7 @@ function xoaHocky(id){
     $("#deleteModel").modal("show");
 
     $.ajax({
-        url:'/api/Donvi/'+ id,
+        url:'/api/Phieudangky/'+ id,
         type: "GET",
         success:function(data){
             console.log(data);
@@ -248,7 +256,7 @@ function xoaHocky(id){
 }
 function savedelete(id){
     $.ajax({
-        url:'/api/Donvi/Delete/'+id,
+        url:'/api/Phieudangky/Delete/'+id,
         type:'GET',
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
@@ -283,7 +291,7 @@ function saveedit(id){
     var tem = new  DonVi (ma,ten,sdt)
        console.log(tem);
         $.ajax({
-            url:'/api/Donvi/Edit/'+id,
+            url:'/api/Phieudangky/Edit/'+id,
             type:'POST',
             dataType: 'json',
             data: JSON.stringify(tem),
@@ -305,7 +313,7 @@ function chitietHocky(id){
     $("#detaildonvitinh").val('')
     $("#detaicblModal").modal("show");
     $.ajax({
-        url:'/api/Hotro/'+ id,
+        url:'/api/Phieudangky/'+ id,
         type: "GET",
         success:function(data){
             console.log("chitiet")
@@ -339,7 +347,7 @@ $('#saveCbnv').click(function () {
     var sdt = $('#addsdt').val();
     var tem = new  DonVi (ma,ten,sdt)
     $.ajax({
-        url: "/api/Donvi",
+        url: "/api/Phieudangky",
         type: "post",
         contentType: "application/json",
         dataType: 'json',
