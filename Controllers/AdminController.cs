@@ -12,7 +12,7 @@ namespace NguyenPhuLoc.Controllers
 {
     public class AdminController : Controller
     {
-          private AppDbContext _db;
+        private AppDbContext _db;
         public AdminController(AppDbContext db)
         {
             _db = db;
@@ -21,63 +21,64 @@ namespace NguyenPhuLoc.Controllers
         {
             return View();
         }
-         public IActionResult Quyetdinh()
+        public IActionResult Quyetdinh()
         {
             return View();
         }
-         public IActionResult Quyen()
+        public IActionResult Quyen()
         {
             return View();
         }
-         public IActionResult Chucvu()
+        public IActionResult Chucvu()
         {
             return View();
         }
-         public IActionResult Loaigiangvien()
+
+        public IActionResult Loaigiangvien()
         {
             return View();
         }
-         public IActionResult Namhoc()
+        public IActionResult Namhoc()
         {
             return View();
         }
-         public IActionResult Hocky()
+        public IActionResult Hocky()
         {
             return View();
         }
-         public IActionResult Hotro()
+        public IActionResult Hotro()
         {
             return View();
         }
-         public IActionResult Congviec()
+        public IActionResult Congviec()
         {
             return View();
         }
-         public IActionResult Donvi()
+        public IActionResult Donvi()
         {
             return View();
         }
-         public IActionResult Nhiemvu()
+        public IActionResult Nhiemvu()
         {
             return View();
         }
-         public IActionResult Quydinh()
+        public IActionResult Quydinh()
         {
             return View();
         }
         public IActionResult Danhmucnghiepvu()
         {
             return View();
-        } 
+        }
         public IActionResult Danhmucquanly()
         {
             return View();
         }
-          public IActionResult Chaomung()
+        public IActionResult Chaomung()
         {
             return View();
-        } 
-        public IActionResult ThongKe()
+        }
+        public IActionResult Danhmucthongke()
         {
             return View();
         }
@@ -87,16 +88,16 @@ namespace NguyenPhuLoc.Controllers
         {
             return View();
         }
-          public IActionResult Phieudangky()
+        public IActionResult Phieudangky()
         {
             return View();
         }
 
-               public IActionResult Xinhotro()
+        public IActionResult Xinhotro()
         {
             return View();
         }
-               public IActionResult Minhchung()
+        public IActionResult Minhchung()
         {
             return View();
         }
