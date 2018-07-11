@@ -49,7 +49,12 @@ namespace NguyenPhuLoc.Controllers
         {
             try
             {
-                PhieuDangKy model = _db.PhieuDangKy.Find(id);
+                var model = from a in _db.PhieuDangKy 
+                                    join c in _db.CBNV on a.MaCBNV equals c.MaCBNV
+                                    where a.MaPhieuDangKy == id
+                                    select new{
+                                        a.MaPhieuDangKy,a.MaHocKy,a.NguoiDangKy,a.NgayDangKy,a.MaCBNV,c.HoCBNV,c.TenCBNV
+                                    };
                 return Ok(model);
             }
             catch (Exception)
